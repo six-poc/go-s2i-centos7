@@ -1,9 +1,9 @@
-name: nodejs
+name: golang
 version: 0.1
-description: An example Node.js application with no database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/nodejs-ex/blob/master/README.md.
+description: An example Golang application with no database. 
 keywords:
 - quickstart
 - nodejs
-home: https://access.redhat.com
+home: https://github.com/bigg01
 sources:
-- https://github.com/openshift/nodejs-ex
+- https://github.com/bigg01/go-s2i-centos7.git
