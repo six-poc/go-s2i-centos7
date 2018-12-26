@@ -30,7 +30,7 @@ RUN yum install -y centos-release-scl && \
         tar -xz -C /usr/local)
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
-#COPY ./s2i/ $STI_SCRIPTS_PATH
+COPY ./s2i/ $STI_SCRIPTS_PATH
 
 USER 1001
 
