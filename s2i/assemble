@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e
 
 echo
@@ -23,17 +22,52 @@ cd $SOURCE
 # echo "---> Downloading dependencies..."
 #go get -v ./...
 
-echo "---> Enable GOMOD"
+GO111MODULE=${GO111MODULE:-on}
+CGO_ENABLED=${CGO_ENABLED:-0}
+GOOS=${GOOS:-linux}
+
+BUILDOPTION_default="-v -a -installsuffix cgo "
+BUILDOPTION=${BUILDOPTION:-$BUILDOPTION_default}
+
+echo "** GO build options **"
+echo "============================================="
+echo "|| GO111MODULE: $GO111MODULE"
+echo "|| CGO_ENABLED: $CGO_ENABLED"
+echo "|| GOOS: $GOOS"
+echo "|| BUILDOPTION: $BUILDOPTION"
+echo "============================================="
+
+if [ ! -f "go.mod" ]; then
+echo "---> No go Mod found we Enable GOMOD"
 export GO111MODULE=on
 go mod init .
+fi
+
+if [  -f "go.sum" ]; then
+echo "--> find go.sum file enable gomod..."
+export GO111MODULE=on
+fi
+
+
+
 
 echo "---> Building application source..."
 #go build -v -o main
 #go install main
 
-CGO_ENABLED=0 GOOS=linux go build -v -a -installsuffix cgo -o main . && \
-upx --ultra-brute -qq topz && \
-upx -t topz
+
+go build ${BUILDOPTION} -o main main.go
+  ERR=$?
+  if [ $ERR -ne 0 ]; then
+    echo "Aborting due to error code $ERR from mvn $BUILDOPTION"
+    exit $ERR
+  fi
+echo "---> Building finish"
+echo "---> upx compress "
+upx -qq main
+echo "---> upx verify "
+upx -t main
+#upx --ultra-brute -qq main && \
 
 echo
 echo "===> Build completed at $(date)"

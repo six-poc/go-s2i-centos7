@@ -8,8 +8,7 @@ To use it, install S2I: https://github.com/openshift/source-to-image
 
 Sample invocation:
 
-$ s2i build https://github.com/openshift-s2i/s2i-go.git \\
-    --context-dir=/${GO_VERSION}/test/test-app/ openshift/go-${IMAGEVER}-centos7 go-test-app
+$ s2i build  https://github.com/bigg01/go-s2i-centos7.git --context-dir test-app --ref master bigg01/go-s2i-centos7 go-test-app
 
 You can then run the resulting image via:
 

@@ -31,7 +31,7 @@ Step 5: Grant the Tiller server edit access to the current project. The Tiller s
 $ oc policy add-role-to-user edit "system:serviceaccount:${TILLER_NAMESPACE}:tiller" -n golang-example
 Step 6: Install a Helm Chart. As an example, we’ll install the trusty OpenShift nodejs-ex sample application:
 
-$ helm install ./helm/golang-ex/ --namespace golang-example
+$ helm install ./helm/golang-ex/ --namespace golang-example 
 
 $ helm install --replace ./helm/golang-ex -n golang-example --namespace golang-example
 
