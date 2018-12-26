@@ -19,6 +19,8 @@ cp -Rf /tmp/src/. $SOURCE
 
 cd $SOURCE
 
+pwd
+
 # echo "---> Downloading dependencies..."
 #go get -v ./...
 
@@ -48,26 +50,28 @@ echo "--> find go.sum file enable gomod..."
 export GO111MODULE=on
 fi
 
-
-
-
 echo "---> Building application source..."
 #go build -v -o main
 #go install main
 
-
 go build ${BUILDOPTION} -o main main.go
   ERR=$?
   if [ $ERR -ne 0 ]; then
-    echo "Aborting due to error code $ERR from mvn $BUILDOPTION"
+    echo "Aborting due to error code $ERR from $BUILDOPTION"
     exit $ERR
   fi
 echo "---> Building finish"
+echo
 echo "---> upx compress "
 upx -qq main
 echo "---> upx verify "
 upx -t main
 #upx --ultra-brute -qq main && \
+
+echo
+pwd
+chmod +x main
+du -hs main
 
 echo
 echo "===> Build completed at $(date)"

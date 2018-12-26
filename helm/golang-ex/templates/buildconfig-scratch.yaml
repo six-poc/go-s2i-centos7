@@ -29,7 +29,7 @@ spec:
           namespace: golang-example
         paths:
           - destinationDir: .
-            sourcePath: /opt/app-root/src/go/bin/main
+            sourcePath: /opt/app-root/src/go/src/main
     type: Dockerfile
   strategy:
     dockerStrategy:
