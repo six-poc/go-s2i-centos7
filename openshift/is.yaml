@@ -1,0 +1,18 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: golang
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: bigg01/go-s2i-centos7
+      generation: 1
+      importPolicy:
+        scheduled: true
+      name: latest
+      referencePolicy:
+        type: Source
