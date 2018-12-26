@@ -1,0 +1,18 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: golang
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: {{ .Values.s2i_image | quote }}
+      generation: 1
+      importPolicy:
+        scheduled: true
+      name: latest
+      referencePolicy:
+        type: Source
