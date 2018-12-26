@@ -13,10 +13,12 @@ spec:
     imageChangeParams:
       automatic: true
       containerNames:
-      - golang-example
+      - go-scratch
       from:
         kind: ImageStreamTag
         name: {{ print .Values.s2i_runtime_image_namespace ":latest" | quote }}
+        namespace: {{ .Release.Namespace | quote }}
+    type: ImageChange
   - type: ConfigChange
   replicas: 1
   selector:

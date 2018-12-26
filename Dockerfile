@@ -21,7 +21,7 @@ LABEL io.k8s.description="Platform for building and running Go applications" \
       io.openshift.tags="builder,go,go1${GO_MINOR_VERSION}"
 
 # Install Go toolchain
-RUN yum install -y centos-release-scl && \
+RUN yum install -y centos-release-scl epel-release && \
     INSTALL_PKGS="mercurial upx" && \
     yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
