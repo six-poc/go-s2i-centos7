@@ -20,3 +20,7 @@ generic_webhook_secret:
 npm_mirror:
 
 s2i_image: bigg01/go-s2i-centos7
+
+s2i_runtime_image_namespace: go-scratch
+
+s2i_runtime_image: scratch

@@ -20,12 +20,19 @@ cp -Rf /tmp/src/. $SOURCE
 
 cd $SOURCE
 
-echo "---> Downloading dependencies..."
-go get -v ./...
+# echo "---> Downloading dependencies..."
+#go get -v ./...
+
+echo "---> Enable GOMOD"
+go mod init .
 
 echo "---> Building application source..."
-go build -v -o main
-go install main
+#go build -v -o main
+#go install main
+
+CGO_ENABLED=0 GOOS=linux go build -v -a -installsuffix cgo -o main . && \
+upx --ultra-brute -qq topz && \
+upx -t topz
 
 echo
 echo "===> Build completed at $(date)"
