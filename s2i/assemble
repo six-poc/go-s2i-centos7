@@ -24,6 +24,7 @@ cd $SOURCE
 #go get -v ./...
 
 echo "---> Enable GOMOD"
+export GO111MODULE=on
 go mod init .
 
 echo "---> Building application source..."
