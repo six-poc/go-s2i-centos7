@@ -28,6 +28,8 @@ GO111MODULE=${GO111MODULE:-on}
 CGO_ENABLED=${CGO_ENABLED:-0}
 GOOS=${GOOS:-linux}
 
+ARTIFACT=${ARTIFACT:-'../../bin/main'}
+
 BUILDOPTION_default="-v -a -installsuffix cgo "
 BUILDOPTION=${BUILDOPTION:-$BUILDOPTION_default}
 
@@ -37,6 +39,8 @@ echo "|| GO111MODULE: $GO111MODULE"
 echo "|| CGO_ENABLED: $CGO_ENABLED"
 echo "|| GOOS: $GOOS"
 echo "|| BUILDOPTION: $BUILDOPTION"
+echo "||"
+echo "|| ARTIFACT: $ARTIFACT"
 echo "============================================="
 
 if [ ! -f "go.mod" ]; then
@@ -54,7 +58,7 @@ echo "---> Building application source..."
 #go build -v -o main
 #go install main
 
-go build ${BUILDOPTION} -o ../bin/main main.go
+go build ${BUILDOPTION} -o ${ARTIFACT} main.go
   ERR=$?
   if [ $ERR -ne 0 ]; then
     echo "Aborting due to error code $ERR from $BUILDOPTION"
@@ -67,18 +71,21 @@ echo "---> Building finish"
 
 echo
 echo "---> upx compress "
-upx -qq ../bin/main
+upx -qq ${ARTIFACT}
 echo "---> upx verify "
-upx -t ../bin/main
+upx -t ${ARTIFACT}
 #upx --ultra-brute -qq main && \
 
 echo
 pwd
-chmod +x ../bin/main
-du -hs ../bin/main
+chmod +x ${ARTIFACT}
+du -hs ${ARTIFACT}
+ls -lahrt ../../bin/
 
 echo
 echo "===> Build completed at $(date)"
 
 # Fix source directory permissions
-fix-permissions ./
+echo "---> fix-permissions"
+fix-permissions ${ARTIFACT}
+#fix-permissions ./

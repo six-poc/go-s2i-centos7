@@ -38,3 +38,9 @@ $ helm install --replace ./helm/golang-ex -n golang-example --namespace golang-e
 $ helm install https://github.com/jim-minter/nodejs-ex/raw/helm/helm/nodejs-0.1.tgz  --namespace golang-example
 
 ```
+
+# test
+```sh
+export TILLER_NAMESPACE=tiller
+oc delete project golang-example && sleep 30 && oc new-project golang-example && oc policy add-role-to-user edit "system:serviceaccount:${TILLER_NAMESPACE}:tiller" -n golang-example && helm install ./helm/golang-ex/ --namespace golang-example
+```
