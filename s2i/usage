@@ -13,4 +13,8 @@ $ s2i build  https://github.com/bigg01/go-s2i-centos7.git --context-dir test-app
 You can then run the resulting image via:
 
 $ docker run -p 8080:8080 go-test-app
+
+#localtest
+docker build -t bigg01_local/go-s2i-centos7 .
+s2i build test-app/ bigg01_local/go-s2i-centos7 test
 EOF

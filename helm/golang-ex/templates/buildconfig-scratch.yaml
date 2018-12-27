@@ -29,7 +29,7 @@ spec:
           namespace: golang-example
         paths:
           - destinationDir: .
-            sourcePath: /opt/app-root/bin
+            sourcePath: /opt/app-root/src/go/bin/main
     type: Dockerfile
   strategy:
     dockerStrategy:
@@ -50,4 +50,5 @@ spec:
 #      secret: {{ .Values.generic_webhook_secret | default (randAlphaNum 40) | quote }}
 #  postCommit:
 #    script: npm test
+
 

@@ -44,3 +44,9 @@ $ helm install https://github.com/jim-minter/nodejs-ex/raw/helm/helm/nodejs-0.1.
 export TILLER_NAMESPACE=tiller
 oc delete project golang-example && sleep 30 && oc new-project golang-example && oc policy add-role-to-user edit "system:serviceaccount:${TILLER_NAMESPACE}:tiller" -n golang-example && helm install ./helm/golang-ex/ --namespace golang-example
 ```
+
+### localtest
+```sh
+docker build -t bigg01_local/go-s2i-centos7 .
+s2i build test-app/ bigg01_local/go-s2i-centos7 test
+```

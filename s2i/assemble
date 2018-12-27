@@ -28,7 +28,8 @@ GO111MODULE=${GO111MODULE:-on}
 CGO_ENABLED=${CGO_ENABLED:-0}
 GOOS=${GOOS:-linux}
 
-ARTIFACT=${ARTIFACT:-'../../bin/main'}
+
+ARTIFACT=${ARTIFACT:-"${GOBIN}/main"}
 
 BUILDOPTION_default="-v -a -installsuffix cgo "
 BUILDOPTION=${BUILDOPTION:-$BUILDOPTION_default}
@@ -38,6 +39,7 @@ echo "============================================="
 echo "|| GO111MODULE: $GO111MODULE"
 echo "|| CGO_ENABLED: $CGO_ENABLED"
 echo "|| GOOS: $GOOS"
+echo "|| GOBIN: $GOBIN"
 echo "|| BUILDOPTION: $BUILDOPTION"
 echo "||"
 echo "|| ARTIFACT: $ARTIFACT"
@@ -80,7 +82,7 @@ echo
 pwd
 chmod +x ${ARTIFACT}
 du -hs ${ARTIFACT}
-ls -lahrt ../../bin/
+ls -lahrt ${GOBIN}
 
 echo
 echo "===> Build completed at $(date)"
