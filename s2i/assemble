@@ -61,6 +61,10 @@ go build ${BUILDOPTION} -o main main.go
     exit $ERR
   fi
 echo "---> Building finish"
+
+echo "install binary"
+go install main
+
 echo
 echo "---> upx compress "
 upx -qq main
