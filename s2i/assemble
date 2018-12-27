@@ -54,7 +54,7 @@ echo "---> Building application source..."
 #go build -v -o main
 #go install main
 
-go build ${BUILDOPTION} -o main main.go
+go build ${BUILDOPTION} -o ../bin/main main.go
   ERR=$?
   if [ $ERR -ne 0 ]; then
     echo "Aborting due to error code $ERR from $BUILDOPTION"
@@ -62,20 +62,20 @@ go build ${BUILDOPTION} -o main main.go
   fi
 echo "---> Building finish"
 
-echo "install binary"
-go install main
+#echo "install binary"
+#go install -v main.go
 
 echo
 echo "---> upx compress "
-upx -qq main
+upx -qq ../bin/main
 echo "---> upx verify "
-upx -t main
+upx -t ../bin/main
 #upx --ultra-brute -qq main && \
 
 echo
 pwd
-chmod +x main
-du -hs main
+chmod +x ../bin/main
+du -hs ../bin/main
 
 echo
 echo "===> Build completed at $(date)"
