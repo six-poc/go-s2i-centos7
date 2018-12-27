@@ -3,7 +3,7 @@ version: 0.1
 description: An example Golang application with no database. 
 keywords:
 - quickstart
-- nodejs
+- golang
 home: https://github.com/bigg01
 sources:
 - https://github.com/bigg01/go-s2i-centos7.git
