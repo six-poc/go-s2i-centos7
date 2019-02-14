@@ -18,8 +18,8 @@ spec:
   source:
     dockerfile: |-
       FROM scratch
-      WORKDIR /usr/local/bin 
-      COPY main main 
+      WORKDIR /usr/local/bin
+      COPY main .
       CMD ["main"]
     images:
       - as: null

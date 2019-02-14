@@ -28,6 +28,8 @@ GO111MODULE=${GO111MODULE:-on}
 CGO_ENABLED=${CGO_ENABLED:-0}
 GOOS=${GOOS:-linux}
 
+# Raspberry PI 3 ARM GOOS=linux GOARCH=arm GOARM=7 go build  -o main_arm main.go
+
 
 ARTIFACT=${ARTIFACT:-"${GOBIN}/main"}
 

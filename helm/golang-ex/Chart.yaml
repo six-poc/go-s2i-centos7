@@ -1,4 +1,4 @@
-name: golang
+name: golang-ex
 version: 0.1
 description: An example Golang application with no database. 
 keywords:
